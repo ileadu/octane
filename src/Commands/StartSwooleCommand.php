@@ -22,9 +22,8 @@ class StartSwooleCommand extends Command implements SignalableCommandInterface
      * @var string
      */
     public $signature = 'octane:swoole
-                    {--host= : The IP address the server should bind to}
+                    {--host= : The IP address or unix domain socket the server should bind to}
                     {--port= : The port the server should be available on}
-                    {--sock= : The unix socket the server should bind to [Swoole only]}
                     {--workers=auto : The number of workers that should be available to handle requests}
                     {--task-workers=auto : The number of task workers that should be available to handle tasks}
                     {--max-requests=500 : The number of requests to process before reloading the server}
@@ -106,7 +105,6 @@ class StartSwooleCommand extends Command implements SignalableCommandInterface
             'appName' => config('app.name', 'Laravel'),
             'host' => $this->getHost(),
             'port' => $this->getPort(),
-            'sock' => $this->option('sock'),
             'workers' => $this->workerCount($extension),
             'taskWorkers' => $this->taskWorkerCount($extension),
             'maxRequests' => $this->option('max-requests'),

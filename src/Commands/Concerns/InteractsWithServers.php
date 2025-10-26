@@ -102,8 +102,8 @@ trait InteractsWithServers
     {
         $this->components->info('Server running…');
 
-        if ($this->option('sock')) {
-            $str = '  Local: <fg=white;options=bold>unix:'.$this->option('sock').' </>';
+        if (str_starts_with($this->option('host'), '/')) {
+            $str = '  Local: <fg=white;options=bold>unix:'.$this->option('host').' </>';
         } else {
             $str = '  Local: <fg=white;options=bold>'.($this->hasOption('https') && $this->option('https') ? 'https://' : 'http://').$this->getHost().':'.$this->getPort().' </>';
         }
